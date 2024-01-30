@@ -2,6 +2,11 @@ name: This is reusable workflow
 
 on:
   workflow_call:
+    inputs:
+      SUPER_VAR:
+        description: 'Super variable'
+        type: string
+        required: true
     secrets:
       SUPER_SECRET:
         required: true
@@ -9,7 +14,10 @@ on:
 jobs:
   echo:
     runs-on: ubuntu-latest
+    environment: myenv
     steps:
     - name: Hello
       run: |
+        set -x
+        echo ${{ inputs.SUPER_VAR }}
         cat ${{ secrets.SUPER_SECRET }}
