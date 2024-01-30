@@ -1,0 +1,15 @@
+name: This is reusable workflow
+
+on:
+  workflow_call:
+    secrets:
+      SUPER_SECRET:
+        required: true
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Hello
+      run: |
+        cat ${{ secrets.SUPER_SECRET }}
